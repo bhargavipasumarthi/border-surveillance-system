@@ -1,3 +1,4 @@
+from db_logger import log_event
 import csv
 from datetime import datetime
 from ultralytics import YOLO
@@ -115,6 +116,10 @@ while cap.isOpened():
         print(
             f"🚨 ALERT: ID {tracker_id} entered restricted zone"
         )
+        log_event(
+            tracker_id,
+            "Entered Restricted Zone"
+)
 
         with open("events.csv", "a", newline="") as file:
             writer = csv.writer(file)
