@@ -1,3 +1,7 @@
+st.set_page_config(
+    page_title="Border Surveillance",
+    layout="wide"
+)
 import streamlit as st
 import pandas as pd
 import sqlite3
@@ -59,6 +63,20 @@ try:
             "HIGH Threats",
             high_count
         )
+    st.subheader("Threat Distribution")
+
+    df["threat_level"] = (
+    df["threat_level"]
+    .fillna("UNKNOWN")
+    .str.upper()
+)
+
+threat_counts = (
+    df["threat_level"]
+    .value_counts()
+)
+
+    st.bar_chart(threat_counts)
 
 except Exception as e:
     st.error(f"Database Error: {e}")

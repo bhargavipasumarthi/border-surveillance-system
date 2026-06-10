@@ -1,3 +1,4 @@
+from threat_engine import get_threat_level
 from db_logger import log_event
 import csv
 from datetime import datetime
@@ -119,6 +120,7 @@ while cap.isOpened():
             f"🚨 ALERT: ID {tracker_id} entered restricted zone"
         )
         threat = get_threat_level(object_name)
+        print(f"Threat Level: {threat}")
 
         log_event(
             tracker_id,
