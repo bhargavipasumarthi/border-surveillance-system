@@ -57,12 +57,14 @@ while cap.isOpened():
         2
     )
 
-    for bbox, tracker_id in zip(
-        detections.xyxy,
-        detections.tracker_id
-    ):
+    for bbox, tracker_id, class_id in zip(
+    detections.xyxy,
+    detections.tracker_id,
+    detections.class_id
+):
 
         x1, y1, x2, y2 = map(int, bbox)
+        object_name = model.names[int(class_id)]
 
         center_x = (x1 + x2) // 2
         center_y = (y1 + y2) // 2
@@ -116,9 +118,12 @@ while cap.isOpened():
         print(
             f"🚨 ALERT: ID {tracker_id} entered restricted zone"
         )
+        threat = get_threat_level(object_name)
+
         log_event(
             tracker_id,
-            "Entered Restricted Zone"
+            "Entered Restricted Zone",
+            threat
 )
 
         with open("events.csv", "a", newline="") as file:
