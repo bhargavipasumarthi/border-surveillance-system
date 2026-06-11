@@ -1,0 +1,8 @@
+streamlit
+pandas
+opencv-python-headless
+ultralytics
+supervision
+reportlab
+numpy
+sqlite-utils
