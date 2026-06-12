@@ -90,7 +90,7 @@ if os.path.exists("latest_frame.jpg"):
     )
 st.sidebar.title("Control Panel")
 
-st.sidebar.success("System Status: ONLINE")
+st.sidebar.success("🟢 System Status: ONLINE")
 
 st.sidebar.info(
     """
@@ -115,7 +115,12 @@ try:
     conn.close()
 
     st.subheader("Event Log")
-    st.dataframe(df)
+    st.dataframe(df.sort_values(
+        by="timestamp",
+        ascending=False
+    ),
+    use_container_width=True
+    )
     
 
 # Search Panel
@@ -135,7 +140,7 @@ try:
     low_count = len(
         df[df["threat_level"] == "LOW"]
     )    
-    st.subheader("Recent Alerts")
+    st.subheader("🚨 Recent Alerts")
 
     st.dataframe(
         df.tail(5),
@@ -207,14 +212,22 @@ try:
     col1, col2 = st.columns(2)
 
     with col1:
-        st.subheader("Threat Distribution")
+        st.subheader("📊 Threat Distribution")
+        st.subheader("🗺️ Zone Activity")
+
+        zone_counts = (
+            df["event"]
+            .value_counts()
+        )
+
+        st.bar_chart(zone_counts)
         st.bar_chart(threat_counts)
 
     with col2:
         st.subheader("Zone Activity")
         st.bar_chart(zone_counts)
 
-    st.subheader("Intrusion Timeline")
+    st.subheader("📈 Intrusion Timeline")
 
     df["timestamp"] = pd.to_datetime(df["timestamp"])
 

@@ -118,6 +118,7 @@ while cap.isOpened():
             ZONE_C[1] <= center_y <= ZONE_C[3]
         ):
             zone_name = "Zone C"
+        inside_zone = zone_name is not None    
 
         if zone_name and tracker_id not in alerted_ids:
 
