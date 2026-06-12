@@ -278,6 +278,9 @@ for i, image in enumerate(images[:9]):
             caption=image,
             use_container_width=True
         )
+high_count = 0
+medium_count = 0
+low_count = 0        
 if high_count > 0:
     st.error(f"🔴 HIGH Threat Events: {high_count}")
 
