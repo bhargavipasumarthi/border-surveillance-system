@@ -115,11 +115,11 @@ try:
         tracker_id INTEGER,
         event TEXT,
         threat_level TEXT
-)
-""")
+    )
+    """)
     
-conn.commit()
-df = pd.read_sql("SELECT * FROM events", conn)
+    conn.commit()
+    df = pd.read_sql("SELECT * FROM events", conn)
 
     df = pd.read_sql_query(
         "SELECT * FROM events",
