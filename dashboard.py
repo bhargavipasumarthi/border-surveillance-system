@@ -285,4 +285,19 @@ if medium_count > 0:
     st.warning(f"🟠 MEDIUM Threat Events: {medium_count}")
 
 if low_count > 0:
-    st.success(f"🟢 LOW Threat Events: {low_count}")        
+    st.success(f"🟢 LOW Threat Events: {low_count}")     
+st.sidebar.markdown("---")
+st.sidebar.subheader("About")
+
+st.sidebar.info("""
+Border Surveillance Command Center
+
+Features:
+- AI Object Detection
+- Multi-Zone Monitoring
+- Threat Classification
+- Evidence Capture
+- PDF Incident Reports
+
+Version: 1.0
+""")       
